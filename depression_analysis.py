@@ -26,6 +26,11 @@ df
 df['Anhedonia'].unique()
 pd.get_dummies(X['Anhedonia']).head(50)
 
+for col_name in X.columns:
+    if X[col_name].dtypes == 'object':
+        unique_cat = len(X[col_name].unique())
+        print(f"Feature '{col_name}' has {unique_cat} unique categories")
+
 df.head(50)
 
 """# **Drop Null Value**"""
