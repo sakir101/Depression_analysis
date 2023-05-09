@@ -31,6 +31,37 @@ for col_name in X.columns:
         unique_cat = len(X[col_name].unique())
         print(f"Feature '{col_name}' has {unique_cat} unique categories")
 
+X['Anhedonia'].value_counts().sort_values(ascending=False)
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values=np.nan, strategy='median')
+
+imputer.fit(X)
+X = pd.DataFrame(data=imputer.transform(X) , columns=X.columns)
+
+df.info()
+
+df.describe()
+
+df['Age'].fillna(df['Age'].median(), inplace=True)
+
+x = df.iloc[:,:-1]
+
+from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier(n_neighbors=1)
+
+knn.fit(X_train,y_train)
+
+pred = knn.predict(X_test)
+
+plt.figure(figsize=(10,6))
+plt.plot(range(1,40),error_rate,color='blue', linestyle='dashed', marker='o',
+         markerfacecolor='red', markersize=10)
+plt.title('Error Rate vs. K Value')
+plt.xlabel('K')
+plt.ylabel('Error Rate')
+
 df.head(50)
 
 """# **Drop Null Value**"""
