@@ -23,6 +23,8 @@ df = pd.read_csv('/content/drive/MyDrive/Depression level analysis 2/PHQ-9 Quest
 
 df
 
+df['Anhedonia'].unique()
+
 df.head(50)
 
 """# **Drop Null Value**"""
